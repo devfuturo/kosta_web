@@ -1,0 +1,15 @@
+package practice;
+
+import java.util.Scanner;
+
+public class prac10818 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int num1 = sc.nextInt();
+		int [] arr = new int[num1];
+		
+		
+
+	}
+
+}

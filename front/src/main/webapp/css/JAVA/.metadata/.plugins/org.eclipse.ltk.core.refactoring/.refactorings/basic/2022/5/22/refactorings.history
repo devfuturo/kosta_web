@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;rrdd.java&apos; to &apos;Kosta.java&apos;&#x0D;&#x0A;- Original project: &apos;basic&apos;&#x0D;&#x0A;- Original element: &apos;rrdd.java&apos;&#x0D;&#x0A;- Renamed element: &apos;Kosta.java&apos;" description="Rename compilation unit &apos;rrdd.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{rrdd.java" name="Kosta.java" references="false" stamp="1653524881697" version="1.0"/>
+</session>

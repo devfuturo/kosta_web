@@ -1,0 +1,10 @@
+public class TPC10 {
+	public static void main(String[] args) {
+		//int, float, char, boolean -> PDT
+		int a = 10;
+		
+//		책 b; b에 책이라는 데이터를 넣고싶음
+		BookDTO b;
+	}
+
+}

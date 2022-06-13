@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;TPVC08&apos; to &apos;TPC08&apos;&#x0D;&#x0A;- Original project: &apos;inflearn&apos;&#x0D;&#x0A;- Original element: &apos;TPVC08&apos;&#x0D;&#x0A;- Renamed element: &apos;TPC08&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;TPVC08&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{TPVC08.java[TPVC08" matchStrategy="1" name="TPC08" qualified="false" references="true" similarDeclarations="true" stamp="1653309849327" textual="false" version="1.0"/>
+</session>

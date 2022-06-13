@@ -1,0 +1,26 @@
+
+public class Kosta{
+	public static void main(String[] args) {
+		int i = 0;
+		
+		if (true) {
+			System.out.println("뿌 시 자 G I T");
+		} 
+//		else if( )) {
+//			System.out.println("박종우");
+//		}
+		else {
+			System.out.println("못뿌시면 취업 망");
+		}
+		System.out.println("not null 사랑해.. 내가 아는 유일한 깃 옷깃..");
+
+	}
+
+
+
+class Genius {
+	String jason = "쩐승현";
+	String princess = "박종주";
+	String lovu = "NOT NULL 사랑해";
+}
+}
