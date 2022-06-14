@@ -79,12 +79,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ProductlistServlet</display-name>
-    <servlet-name>ProductlistServlet</servlet-name>
-    <servlet-class>com.my.control.ProductlistServlet</servlet-class>
+    <display-name>ProductListServlet</display-name>
+    <servlet-name>ProductListServlet</servlet-name>
+    <servlet-class>com.my.control.ProductListServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ProductlistServlet</servlet-name>
+    <servlet-name>ProductListServlet</servlet-name>
     <url-pattern>/productlist</url-pattern>
   </servlet-mapping>
 </web-app>
