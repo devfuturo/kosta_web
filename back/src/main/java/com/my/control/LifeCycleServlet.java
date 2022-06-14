@@ -19,9 +19,9 @@ public class LifeCycleServlet extends HttpServlet {
         System.out.println("LifeCycleServlet의 생성자 호출됨");
 //        ServletContext sc = this.getServletContext();
 //        String developer = sc.getInitParameter("developer");
-//        System.out.println(developer);
+//        System.out.println(developer); //이 위치에 선언 시 init이 안 되기 때문에 null값 반환
     }
-
+    // 자동 호출되는 init 메서드와 서블릿 context를 연결해 줌
 	public void init(ServletConfig config) throws ServletException { //객체 생성과 동시에 초기화가 필요할 시 init()에 할 것
 		super.init(config); //ServletContext 객체를 참조
 		System.out.println("LifeCycleServlet의 init() 호출됨");

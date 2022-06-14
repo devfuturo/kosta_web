@@ -1,0 +1,74 @@
+package com.my.control;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ProductlistServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json;charset=utf-8"); //charset은 대소문자 구분X
+		PrintWriter out = response.getWriter();
+		
+		//DB쪽 자료
+		List<Map<String,Object>> sample = new ArrayList<>();
+		Map<String,Object> map = new HashMap<>();
+		map.put("prod_no","C0001");
+		map.put("prod_name","제주비자림콜드브루");
+		map.put("prod_price","2000");
+		sample.add(map);
+
+		map.put("prod_no","C0002");
+		map.put("prod_name","아메리카노");
+		map.put("prod_price","1000");
+		sample.add(map);
+		
+		map.put("prod_no","C0003");
+		map.put("prod_name","바닐라플랫화이트");
+		map.put("prod_price","1500");
+		sample.add(map);
+		// ------------------------
+		
+		
+		String result ="["; //자바스크립트의 []
+		for(int i = 0; i<sample.size(); i++) {
+			Map map1 = sample.get(i);
+			map1.get("prod_no");
+			map1.get("prod_name");
+			map1.get("prod_price");
+		}
+		
+		result += "{"; //자바스크립트 객체{}
+		result += "\"prod_no\":"; result += "\"C0001\""; result += ",";
+		result += "\"prod_name\":"; result += "\"제주비자림콜드브루\""; result += ",";
+		result += "\"prod_price\":"; result += "2000"; 
+		result += "}";
+		result += ",";
+		
+		result += "{";
+		result += "\"prod_no\":"; result += "\"C0002\""; result += ",";
+		result += "\"prod_name\":"; result += "\"아메리카노\""; result += ",";
+		result += "\"prod_price\":"; result += "1000";  // 숫자타입은 "\\"넣어주지 않아도 됨
+		result += "}";
+		result += ",";
+		
+		result += "{";
+		result += "\"prod_no\":"; result += "\"C00023\""; result += ",";
+		result += "\"prod_name\":"; result += "\"바닐라플랫화이트\""; result += ",";
+		result += "\"prod_price\":"; result += "1500";  // 숫자타입은 "\\"넣어주지 않아도 됨
+		result += "}";
+		
+		result += "]";
+		out.print(result);
+	}
+
+}

@@ -1,0 +1,48 @@
+package com.my.control;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ProductlistServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json;charset=utf-8"); //charset은 대소문자 구분X
+		PrintWriter out = response.getWriter();
+		
+		List<Map> test = new ArrayList<>();
+		
+		String result ="["; //자바스크립트의 []
+		
+		result += "{"; //자바스크립트 객체{}
+		result += "\"prod_no\":"; result += "\"C0001\""; result += ",";
+		result += "\"prod_name\":"; result += "\"제주비자림콜드브루\""; result += ",";
+		result += "\"prod_price\":"; result += "1000"; 
+		result += "}";
+		result += ",";
+		
+		result += "{";
+		result += "\"prod_no\":"; result += "\"C0002\""; result += ",";
+		result += "\"prod_name\":"; result += "\"아메리카노\""; result += ",";
+		result += "\"prod_price\":"; result += "1000";  // 숫자타입은 "\\"넣어주지 않아도 됨
+		result += "}";
+		result += ",";
+		
+		result += "{";
+		result += "\"prod_no\":"; result += "\"C00023\""; result += ",";
+		result += "\"prod_name\":"; result += "\"바닐라플랫화이트\""; result += ",";
+		result += "\"prod_price\":"; result += "1000";  // 숫자타입은 "\\"넣어주지 않아도 됨
+		result += "}";
+		
+		result += "]";
+		out.print(result);
+	}
+
+}

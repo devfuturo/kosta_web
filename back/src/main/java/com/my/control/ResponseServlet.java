@@ -40,7 +40,6 @@ public class ResponseServlet extends HttpServlet {
 			// 따라서 print사용 할 것
 			// System.out.println -> 상관없음
 		}	
-		
 		out.print("</body>");
 		out.print("</html>");
 		
