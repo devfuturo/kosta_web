@@ -26,7 +26,8 @@ public class SignupServlet extends HttpServlet {
 
 		// -------------------
 		String result = "{\"status\":0, \"msg\": \"가입실패\"}";
-		
+		// 술꾼 한미래 왈 : 술 없으면 인생에 낙이 없다 .. 
+		//메모...
 		//DB와의 연결
 		Connection con = null;
 	

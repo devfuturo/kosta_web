@@ -1,4 +1,6 @@
 $(function() {
+	//아이디 입력객체찾기
+	let $inputId = $('input[name=id]');
 
     //가입버튼객체찾기
     let $btSubmit = $('input[type=submit]');
@@ -6,12 +8,29 @@ $(function() {
     //--아이디중복확인버튼 클릭 START--
     let $btIdupchk = $('input.iddupchk');
     $btIdupchk.click(function(){
-      $btSubmit.show();
-    });
+		$.ajax({
+
+			url:'http://localhost:8888/back/iddupchk',
+			method :'GET',
+			data: {id : $inputId.val()},
+			success: function(jsonObj){
+				if(jsonObj.status == 1){ // 사용 가능한 아이디인 경우
+					$btSubmit.show();
+					alert(jsonObj.msg);
+				}else{
+					alert(jsonObj.msg);
+				}
+			},
+			error: function(jqXHR){
+				alert('오류'+jqXHR.status); //404, 500, 200 과 같은 에러코드값만 보겠다.
+			}
+		}); return false ; //일반 button은 눌러도 아무 기능이 없기 때문에 return false해 주지 않아도 됨
+    }) 
     //--아이디중복확인버튼 클릭 END--
+
     
     //--아이디입력란에 포커스 START--
-    let $inputId = $('input[name=id]');
+    $inputId = $('input[name=id]');
     $inputId.focus(function(){
       $btSubmit.hide();
     });
