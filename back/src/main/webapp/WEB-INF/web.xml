@@ -97,4 +97,24 @@
     <servlet-name>IdDupChkServlet</servlet-name>
     <url-pattern>/iddupchk</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewProductServlet</display-name>
+    <servlet-name>ViewProductServlet</servlet-name>
+    <servlet-class>com.my.control.ViewProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewProductServlet</servlet-name>
+    <url-pattern>/viewproduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MoveServlet</display-name>
+    <servlet-name>MoveServlet</servlet-name>
+    <servlet-class>com.my.control.MoveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MoveServlet</servlet-name>
+    <url-pattern>/move</url-pattern>
+  </servlet-mapping>
 </web-app>

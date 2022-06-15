@@ -18,12 +18,11 @@ public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String id = request.getParameter("id"); // signup.html의 아이디 name=id와 연결됨
 		String pwd = request.getParameter("pwd");
 		String name = request.getParameter("name");
 		String addr = request.getParameter("addr");
 		String buildingno = request.getParameter("buildingno");
-
 		// -------------------
 		String result = "{\"status\":0, \"msg\": \"가입실패\"}";
 		// 술꾼 한미래 왈 : 술 없으면 인생에 낙이 없다 .. 
@@ -36,7 +35,7 @@ public class SignupServlet extends HttpServlet {
 		int rs = 0;
 		
 		try {
-			con = MyConnection.getConnection();
+			con = MyConnection.getConnection(); //com.my.sql 패키지의 MyConnection과 연결
 			String insertSQL = "INSERT INTO customer(id,pwd,name, address, status, buildingno) VALUES (?,?,?,?,1,?)";
 			pstmt = con.prepareStatement(insertSQL);
 			pstmt.setString(1, id);
@@ -45,8 +44,9 @@ public class SignupServlet extends HttpServlet {
 			pstmt.setString(4, addr);
 //			pstmt.setString(5, "1");  // 지정된 값은 인덱스에 추가하면X. 부적합한 열 인덱스 오류
 			pstmt.setString(5, buildingno);
-			rs= pstmt.executeUpdate();
-			if(rs == 1) {
+			rs= pstmt.executeUpdate(); //DB로 위에 입력된 값을 넘겨주고 DB에서 결과값을 보내줌 -> 결과값 보내주는 함수 executeUpdate();
+			//그 값을 rs에 대입
+			if(rs == 1) { //rs 가 true일 때. (rs == 0이면 rs가 false일 때)
 				result = "{\"status\":1, \"msg\": \"가입성공\"}";
 			}
 

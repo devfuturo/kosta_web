@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.my.sql.MyConnection;
 
-/**
- * Servlet implementation class loginServlet
- */
-public class loginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//post방식으로 보내는 것이기 때문에 deGet이 아닌 doPost만 있으면 됨

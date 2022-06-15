@@ -12,12 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.my.dto.Product;
 import com.my.sql.MyConnection;
 
 public class IdDupChkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Product sample =(Product)request.getAttribute("test"); //Product타입으로 강제 형변환
+		System.out.println(sample);
+		
 		String id = request.getParameter("id");
 		
 		//status와 msg 둘 다 응답해야함
