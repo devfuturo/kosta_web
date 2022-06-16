@@ -1,0 +1,30 @@
+<%@page import="com.my.dto.Product"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%Product p = (Product)request.getAttribute("p"); %>
+	<jsp:include page="../html/header.html"></jsp:include>
+	<section>
+		<article>
+			<div class="viewproduct">
+				<img src="/front/images/<%=p.getProdNo()%>.jpg" alt="<%=p.getProdName()%>">
+				<div class="detail">
+					상품번호:<%=p.getProdNo()%><br>
+					<h1>상품명:<%=p.getProdName()%></h1>
+					상품가격:<%=p.getProdPrice()%><br>
+					<hr>
+					상품제조일자:<%=p.getProdMfd()%><br> 상품상세: <%=p.getProdInfo()%>
+				</div>
+			</div>
+		</article>
+	</section>
+
+	
+</body>
+</html>

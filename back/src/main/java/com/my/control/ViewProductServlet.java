@@ -1,8 +1,8 @@
 package com.my.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,18 +25,16 @@ public class ViewProductServlet extends HttpServlet {
 		try {
 			Product p = respository.selectByProdNo(prod_no);
 			//3. 응답 형식 지정
-			//Json 형태 -> 기존 페이지에 추가로 끼워넣기 / 주소 url변경 -> clear해서 새로 처리(채워짐)
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.print("<!DOCTYPE html>");
-			out.print("<html>");
-			out.print("상품번호:"+prod_no);
-			out.print("<h1>");
-			out.print("상품명:"+p.getProdName());
-			out.print("</h1>");
-			out.print("가격:"+p.getProdPrice());
-			out.print("</html>");
+			//json 형태 -> 기존 페이지에 추가로 끼워넣기 / 주소 url변경 -> clear해서 새로 처리(채워짐)
 			
+			
+			//3. request의 속성(이름:"p",값 : 상품객체) 설정 
+			request.setAttribute("p",p);
+			
+			//4. "/back/jsp/viewproduct.jsp"로 이동
+			String path = "/jsp/viewproduct.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(path);
+			rd.forward(request, response);
 			
 		} catch (FindException e) { 
 			e.printStackTrace();
