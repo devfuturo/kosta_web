@@ -1,6 +1,8 @@
 $(function(){
-    alert(window.location.search);
+    // alert(window.location.search);
     let queryString = location.search.substring(1); //0번 인덱스는 '?' 이니까 1번째 인덱스부터 가지고 오도록
+    //queryString : 사용자가 입력 데이터를 전달하는 방법중의 하나로, url 주소에 미리 협의된 데이터를 파라미터를 통해 넘기는 것을 말한다.
+
     $.ajax({
         url:'/back/viewproduct',
         method:'get',
@@ -27,7 +29,7 @@ $(function(){
         },
         error: function(){
             alert('오류:'+jqXHR.status);
+        
         }
     });
-
 });
