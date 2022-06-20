@@ -17,11 +17,11 @@ public class Product implements Serializable{
 		this.prodNo = prodNo;
 	}
 	
-	public Product(String prodNo,String prodName,int prodPrice){
-		this(prodNo, prodName, prodPrice, null,null); //맨 밑의 product에서 
-//		this.prodNo=prodNo;
-//		this.prodName=prodName;
-//		this.prodPrice=prodPrice;
+	public Product(String prodNo, String prodName, int prodPrice){
+//		this(prodNo, prodName, prodPrice, null, null); //맨 밑의 product에서 
+		this.prodNo=prodNo;
+		this.prodName=prodName;
+		this.prodPrice=prodPrice;
 	}
 	public Product(String prodNo,String prodName,int prodPrice,Date prodMfd){
 		this(prodNo, prodName, prodPrice, null, prodMfd);
@@ -54,6 +54,7 @@ public class Product implements Serializable{
 	public int hashCode() {
 		return Objects.hash(prodNo);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,6 +66,8 @@ public class Product implements Serializable{
 		Product other = (Product) obj;
 		return Objects.equals(prodNo, other.prodNo); //return prodNo.equals 
 	}
+	
+	
 	public String getProdNo() {
 		return prodNo;
 	}
@@ -95,7 +98,5 @@ public class Product implements Serializable{
 	public void setProdMfd(Date prodMfd) {
 		this.prodMfd = prodMfd;
 	}
-	
-	
 
 }

@@ -32,4 +32,41 @@ $(function(){
         
         }
     });
+    
+    // ----- 장바구니 버튼 클릭 START -----
+    $('div.viewproduct ul>li>button').click(function(){
+        let prod_no = $('div.viewproduct ul>li>span.prod_no').html(); // text (맞는지모름)'상품번호 :'  가지고옴
+        let quantity = $('div.viewproduct ul>li>input[name=quantity]').val(); // value로 가지고 와야함
+        // alert("장바구니버튼 클릭:prod_no")
+        $.ajax({
+            url:'/back/addcart',
+            method:'GET',
+            data:{prod_no: prod_no, quantity: quantity},
+            success : function(){ // 응답결과 무시
+                ///viewproduct.html 파일에 장바구니 추가 시 보여 줄 작은 div창을 가려뒀다가 이 때 보여주면 됨   
+                //모달창? div영역이 화면에 보이는 동안에 다른 영역을 선택하지 못하도록 하는 방법도 있음
+                $('div.viewproduct div.result').show(); // 가려져 있다가 성공하면 div창 보여지는 것
+            },
+            error : function(jqXHR){
+                alert('오류'+jqXHR.status);
+            }
+        });
+        return false;
+    });
+    // ----- 장바구니 버튼 클릭 END -----
+
+
+    // ----- 상품 목록보기 버튼 클릭 START -----
+    $('div.result>button.productlist').click(function(){
+        $('nav>a[href="productlist.html"]').trigger('click'); // 메뉴의 클릭이벤트 강제 발생
+    });
+    // ----- 상품 목록보기 버튼 클릭 END -----
+
+    
+    //----- 장바구니 보기 버튼 클릭 START -----
+    $('div.result>button.viewcart').click(function(){
+        $('nav>a[href="viewcart.html"]').trigger('click');
+    });
+    //----- 장바구니 보기 버튼 클릭 END -----
+
 });

@@ -44,6 +44,9 @@ article{
 	overflow : auto;
 	
 }
+article > div.viewproduct{
+	margin:auto;
+}
 
 article > figure{
 	margin: 0 auto ;

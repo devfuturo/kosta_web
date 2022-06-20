@@ -1,0 +1,6 @@
+package com.my.repository;
+
+public interface OrderRepository {
+	public void insert(OrderInfo info) throws AddException;
+
+}
