@@ -33,14 +33,14 @@ $(function(){
         }
     });
     
-    // ----- 장바구니 버튼 클릭 START -----
+    // ----- 장바구니 넣기 버튼 클릭 START -----
     $('div.viewproduct ul>li>button').click(function(){
         let prod_no = $('div.viewproduct ul>li>span.prod_no').html(); // text (맞는지모름)'상품번호 :'  가지고옴
         let quantity = $('div.viewproduct ul>li>input[name=quantity]').val(); // value로 가지고 와야함
-        // alert("장바구니버튼 클릭:prod_no")
+        // alert("장바구니버튼 클릭:");
         $.ajax({
             url:'/back/addcart',
-            method:'GET',
+            method:'get',
             data:{prod_no: prod_no, quantity: quantity},
             success : function(){ // 응답결과 무시
                 ///viewproduct.html 파일에 장바구니 추가 시 보여 줄 작은 div창을 가려뒀다가 이 때 보여주면 됨   

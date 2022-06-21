@@ -47,10 +47,10 @@ public class ProductOracleRepository implements ProductRepository {
 				String prod_no = rs.getString("prod_no"); // SQL의 VARCHAR2이 JAVA에는 없기 때문에 getString메서드를 사용하여 
 				String prod_name = rs.getString("prod_name"); //컬럼에 대한 값 가지고 오고 String에 넣어주어야함
 				int prod_price = rs.getInt("prod_price");
-				//			Map<String,Object> map1 = new HashMap<>(); // Map : 가방의 역할 
-				//			map1.put("prod_no", prod_no); // 이 자료를 만들어서 map에 넣음 ->  가방의 역할
-				//			map1.put("prod_name", prod_name);
-				//			map1.put("prod_price", prod_price);
+				//	Map<String,Object> map1 = new HashMap<>(); // Map : 가방의 역할 
+				//	map1.put("prod_no", prod_no); // 이 자료를 만들어서 map에 넣음 ->  가방의 역할
+				//	map1.put("prod_name", prod_name);
+				//	map1.put("prod_price", prod_price);
 				Product p = new Product(prod_no, prod_name,prod_price);
 
 				//			sample.add(map1);

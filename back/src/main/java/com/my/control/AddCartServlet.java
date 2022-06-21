@@ -41,8 +41,11 @@ public class AddCartServlet extends HttpServlet {
 //		List<Map<Product,Integer>> cart = (List)session.getAttribute("cart"); // 카트라는 이름의 attribute가 있는지 확인 
 		
 		// 3.
-		Map<Product,Integer> cart = (Map)session.getAttribute("cart");
-		
+		Map<Product, Integer> cart = (Map)session.getAttribute("cart");
+		if(cart ==null) {
+			cart = new HashMap<>();
+			session.setAttribute("cart", cart);
+		}
 		Product p = new Product(); p.setProdNo(prodNo); 
 		int newQuantity = Integer.parseInt(quantity);
 			Integer oldQuantity = cart.get(p); // 맵에서 상품찾는다. 전달된 p 객체의 hashcode 매서드와 equals메서드가 true인 것을 찾아내는 것

@@ -29,10 +29,10 @@ $(function(){
                 
                 let p = element.p ;
                 let product = '<ul>';
-                product += '<li class="prod_no">상품번호<span>' + p.prodNo + '</span></li>';
-                product += '<li class="prod_name">상품명<span>' + p.prodName +'</span></li>';
-                product += '<li class="prod_price">상품가격<span>'+ p.prodPrice +'</span></li>';
-                product += '</ul>';
+                product += '<li class="prod_no">상품번호<span>' + p.prodNo + '</span></li>'
+                product += '<li class="prod_name">상품명<span>' + p.prodName +'</span></li>'
+                product += '<li class="prod_price">상품가격<span>'+ p.prodPrice +'</span></li>'
+                product += '</ul>'
                 $copyObj.find('div.product').html(product); // 후손 찾기
 
                 let quantity = element.quantity ;
@@ -56,21 +56,19 @@ $(function(){
             method: 'get',
             //요청시에 전달 할 데이터 따로 없음
             success: function(){
-                if(jsonObj.status ==1){ // 주문 성공 경우
-                    alert('주문 성공');
+                if(jsonObj.status == 1){ // 주문 성공 경우
                     alert(json.msg);
                     // location.href="";// alert 띄우고 지금 사용중인 url 재요청
                     $('nav>a[href="productlist.html"]').trigger('click'); // 주문 성공 시 상품목록으로 가기
                 }else if(jsonObj.status == 0){ // 주문실패 1번 케이스) 로그인이 안 되어 주문 불가한 경우
                     //장바구니 넣기 까지는 로긘과 상관 없이 가능하도록
-                    alert('로그인하세요');
                     alert(json.msg);
                     $('nav>a[href="login.html"]').trigger('click'); // 로그인 화면으로 이동
                 }else if(jsonObj.status == -1){ // 주문실패 2번 케이스) 주문 실패 (네트웤, 서버 자원 문제 X는데 주문이 제대로 안 된 케이스)
                 //backEnd 테이블 주문 상세 테이블에 자료 추가하다가 실패한 경우(큰 수량 주문 시 자료형 넘어 갈 경우)가 있을 수 있음
-                    alert('주문실패');
                     alert(json.msg);
                     $('nav>a[href="productlist.html"]').trigger('click');
+                }
             },
             error: function(jqXHR){
                 alert('오류'+jqXHR.status);  

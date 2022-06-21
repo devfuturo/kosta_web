@@ -20,7 +20,7 @@ h1{
 	vertical-align: middle;
 }
 
-nav{
+header>nav{
 	float:right;
 	background-color: lightgray;
 	color:blue;
