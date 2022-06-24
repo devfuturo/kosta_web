@@ -9,6 +9,8 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.my.dto.OrderInfo"/>
     <fullyQualifiedTypeName name="oracle.net.aso.l"/>
-    <fullyQualifiedTypeName name="com.my.sql.MyConnection"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.my.sql.MyConnection"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
 </qualifiedTypeNameHistroy>

@@ -20,10 +20,10 @@ $(function(){
 	$.ajax({ 
 		url: url,
 		method: method,
-		success: function(jsonObj){1
+		success: function(jsonObj){
 			let $navObj = $('header>nav');
 			let $navObjHtml = '';
-			if(jsonObj.status = 1){ //로그인 된 경우
+			if(jsonObj.status == 1){ //로그인 된 경우
 				$navObjHtml += '<a href="vieworder.html">주문내역</a>';
 				$navObjHtml += '<a href="/back/logout">로그아웃</a>';
 			}else{ // 로그인 안 된 경우

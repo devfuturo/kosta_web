@@ -5,35 +5,29 @@ $(function() {
     $.ajax({
         url:'/back/vieworder',
         method:'get',
-        success: function(data) {
-        // 객체의 원본을 찾음
-        let $orderObj = $('div.vieworder>div.order')
-        
+        success: function() {
+            alert('성공');
+        // let $orderObj = $('div.vieworder') ;
 
-        $(jsonObj).each(function(index,element){
-            $copyObj = $orderObj.clone();
+        // $(jsonObj).each(function(index,element){
+        //     $copyObj = $orderObj.clone();
            
-            let i = element.i;
-            let order_info = '<div>';
-            info += <div class="order_no">주문번호</div>
-            info += <div class="order_dt">주문일자</div>
-            info += '</div>';
-            $copyObj.find('div.order_info').html(order_info);
-            
-
-            let order_line = '<div>';
-            info += <div class="prod_no">상품번호</div>
-            info += <div class="prod_name">상품명</div>
-            info += <div class="prod_price">가격</div>
-            info += '</div>';
-            $copyObj.find('div.order_line').html(order_line);
+        //     let i = element.i;
+        //     let vieworder = '<div>';
+        //     info += <div class="order_no">주문번호</div>
+        //     info += <div class="order_dt">주문일자</div>
+        //     info += <div class="prod_no">상품번호</div>
+        //     info += <div class="prod_name">상품명</div>
+        //     info += <div class="prod_price">가격</div>
+        //     info += '</div>';
+        //     $copyObj.find('div.order_info').html(order_info);
+        //     $copyObj.find('div.order_line').html(order_line);
         
-            let order_quantity = element.order_quantity;
-            $copyObj.find('div.order_quantity').html('주문수량'+order_quantity);
+        //     let order_quantity = element.order_quantity;
+        //     $copyObj.find('div.order_quantity').html('주문수량'+order_quantity);
             
-            $('div.vieworder').append($copyObj);
-
-        }); 
+        //     $('div.vieworder').append($copyObj);
+        // });
 
         },
         error: function(jqXHR){

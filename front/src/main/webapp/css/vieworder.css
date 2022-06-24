@@ -6,7 +6,7 @@
 
 div.vieworder{
     border:1px solid;
-    display: table-cell;
+    /* display: flex; */
 }
 
 div.order_id{

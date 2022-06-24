@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.my.dto.OrderInfo;
 import com.my.dto.OrderLine;
+import com.my.dto.Product;
 import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.sql.MyConnection;
@@ -56,44 +57,61 @@ public class OrderOracleRepository implements OrderRepository {
 	}
  	@Override
 	public List<OrderInfo> selectById(String orderId) throws FindException {
+ 		// 주문 내역은 꺼내 오는 것이기 때문에 DB와 연결을 해서 꺼내와야함
+ 		// insert는 넣어주는 값이기 때문에 DB와 연결 할 필요가 X
 		// repository에선 웹과 관련된 일 절대 하지X
  		// 로그인 된 orderId를 가지고 와서 orderInfo(주문자가 주문한 내용만 반환)를 List에 넣어서 
  		// 반환된 내용 서블릿이 받아와서 서블릿이 json문자열로 만들어서 응답
  		// 최근 주문번호부터 내림차순, 같은 주문번호라면 상품 번호로 오름차순하여 정렬
  		// select 구문 만들어져야하고 
-// 		List<OrderInfo> orderinfo = new ArrayList<>();
 // 		
-// 		Connection con = null;
-// 		PreparedStatement pstmt = null;
-// 		ResultSet rs = null;
-// 		String selectIdSQL = 
-// 				"SELECT i.ORDER_NO, ORDER_DT, ORDER_PROD_NO, ORDER_QUANTITY "
-// 				+ "FROM order_line l JOIN order_info i ON(l.order_no = i.order_no) "
-// 				+ "ORDER BY 3 DESC , 4";
-//		try {
-//			con = MyConnection.getConnection();
-//			pstmt = con.prepareStatement(selectIdSQL);
-//			rs = pstmt.executeQuery();
-//			if(rs.next()) {
-//				int orderNo = rs.getInt("order_no");
-//				String order_id = rs.getString("order_id"); 
-//				Date order_date = rs.getDate(0);
-//				String order_prod_no = rs.getString("order_prod_no");
-//				int quantity = rs.getInt("quantity"); 
-//				OrderInfo i = new OrderInfo (order_no, order_id, order_date);
-//				OrderLine
-//			}else {
-//				
-//			}
-//			return orderInfo;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			throw new FindException(e.getMessage());
-//		}finally {
-//			MyConnection.close(rs, pstmt, con);
-//		}
- 	
-//	}
- 		return null;
+ 		Connection con = null;
+ 		PreparedStatement pstmt = null;
+ 		ResultSet rs = null;
+ 		String viewOrderId = 
+ 				"SELECT * FROM ORDER_LINE, ORDER_INFO, PRODUCT "
+ 				+ "WHERE ORDER_LINE.ORDER_NO = ORDER_INFO.ORDER_NO"
+ 				+ "ORDER BY 3 DESC , 4";
+ 		
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(viewOrderId);
+			rs = pstmt.executeQuery(); // rs라는 변수에 주문 내역을 할당
+			// 여기까지 DB에서 주문 내역을 꺼내 오는 것
+			
+			// 값이 한줄한줄 들어가는 것
+			List<OrderInfo> orderInfo = new ArrayList<>();
+			while(rs.next()) {
+				int orderNo = rs.getInt("order_no"); 
+				String order_id = rs.getString("order_id"); 
+				Date orderDt = rs.getDate("order_dt");
+				String orderProdNo = rs.getString("order_prod_no");
+				int orderQuantity = rs.getInt("order_quantity");
+				String prodName = rs.getString("prod_name");
+				int prodPrice = rs.getInt("prod_price");
+				
+				Product orderP = new Product(orderProdNo, prodName, prodPrice); //생성자 선언
+				
+				List<OrderLine> orderLine =(List)new OrderLine(orderNo, orderP, orderQuantity); 
+				
+				orderInfo = (List) new OrderInfo(orderNo, orderId, orderDt, orderLine);
+				System.out.println(orderNo);
+				System.out.println(order_id);
+				System.out.println(orderDt);
+				System.out.println(orderProdNo);
+				System.out.println(orderQuantity);
+				System.out.println(prodName);
+				System.out.println(prodPrice);
+				
+			}
+			return orderInfo;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new FindException(e.getMessage());
+		}finally {
+			MyConnection.close(rs,  pstmt, con);
+		}
+		
+ 
  	} 
 }
