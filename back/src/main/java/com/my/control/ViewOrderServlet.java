@@ -21,33 +21,46 @@ import com.my.repository.OrderRepository;
 public class ViewOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response, String order_id) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 요청 전달 데이터 X 로그인된 (주문자) id값은 세션 객체의 어트리뷰트로 있음
 		// 주문 정보는 DB에 있음
 		// 응답결
 		// session의 주문 내용 확인하고 주문 내용을 json형태로 응답한다
 		
-		
+		// 로그인된 주문자 id값 얻기
 		HttpSession session = request.getSession();
-
+		Map<OrderInfo, Integer> info = (Map)session.getAttribute("loginInfo");
+		if(info == orderId ) {
+			
+		}
+		
 		// DB에서 주문 정보 검색
 		OrderRepository repository = new OrderOracleRepository();
-		Map<OrderInfo, Integer> info = (Map)session.getAttribute("loginInfo");
-		Map<String, Object> map = new HashMap<>();
+//		List<OrderInfo> orderId = repository.selectById(getServletInfo()); 
+//		List<OrderInfo> i = repository.selectById(orderId);
+//		Map<OrderInfo, Integer> map = new HashMap<>();
+//		
+//		map.put("orderNo", orderNo);
+//		map.put("orderId", orderId);
+//		map.put("orderDt", orderDt);
+//		map.put("orderLine", lines);
+//		map.put("orderQuantity", orderQuantity);
+//		
+//		ObjectMapper mapper = new ObjectMapper();
+//		
+//		
+		// 주문 내역에 있는 결과를 꺼내기
+//		List list = new ArrayList<>();
+//		for(OrderInfo i : info.keySet()) {
+//			Map map = new HashMap<>();
+//			map.put(order_id, list);
+//			map.put()
+//		}
 		
-		ObjectMapper mapper = new ObjectMapper();
-		
-		List list = new ArrayList<>();
-		for(OrderInfo i : info.keySet()) {
-			
-			map.put(order_id, list);
-			map.put()
-			Map map = new HashMap<>();
-		}
-	
 		// 서블릿이 결과 응답
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		String result = "";
 		
 		
 	}
