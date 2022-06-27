@@ -20,7 +20,8 @@ public class ViewCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//session의 카트 내용 확인하고 카트 내용을 json 형태로 응답
+
+		//session의 카트 내용 확인하고 카트 내용을 json 형태로 응답
 		HttpSession session = request.getSession();
 		Map<Product, Integer> cart = (Map)session.getAttribute("cart");
 		

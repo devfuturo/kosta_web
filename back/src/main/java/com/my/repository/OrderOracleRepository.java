@@ -68,14 +68,20 @@ public class OrderOracleRepository implements OrderRepository {
  		Connection con = null;
  		PreparedStatement pstmt = null;
  		ResultSet rs = null;
- 		String viewOrderId = 
+ 		String viewOrderInfoSQL = 
  				"SELECT * FROM ORDER_LINE, ORDER_INFO, PRODUCT "
- 				+ "WHERE ORDER_LINE.ORDER_NO = ORDER_INFO.ORDER_NO"
- 				+ "ORDER BY 3 DESC , 4";
+ 				+ "WHERE ORDER_LINE.ORDER_NO = ORDER_INFO.ORDER_NO";
+// 				+ "ORDER BY ORDER_DT DESC, PROD_NAME";
+
+ 		// 		String viewOrderInfoSQL = 
+// 				"SELECT I.ORDER_NO, I.ORDER_ID, I.ORDER_DT, L.ORDER_NO,P.PROD_NO,P.PROD_NAME,P.PROD_PRICE,L.ORDER_QUANTITY "
+// 				+ "FROM ORDER_LINE L JOIN ORDER_INFO I ON (L.ORDER_NO = I.ORDER_NO)"
+// 				+ "JOIN PRODUCT P ON (P.PROD_NO = L.ORDER_PROD_NO)";
+//				+ "ORDER BY 3 DESC, 5";
  		
 		try {
 			con = MyConnection.getConnection();
-			pstmt = con.prepareStatement(viewOrderId);
+			pstmt = con.prepareStatement(viewOrderInfoSQL);
 			rs = pstmt.executeQuery(); // rs라는 변수에 주문 내역을 할당
 			// 여기까지 DB에서 주문 내역을 꺼내 오는 것
 			
@@ -92,17 +98,21 @@ public class OrderOracleRepository implements OrderRepository {
 				
 				Product orderP = new Product(orderProdNo, prodName, prodPrice); //생성자 선언
 				
-				List<OrderLine> orderLine =(List)new OrderLine(orderNo, orderP, orderQuantity); 
+				List<OrderLine> lines = new ArrayList<>();
+				OrderLine orderLine = new OrderLine(orderNo, orderP, orderQuantity);
+//				lines.add(orderLine);
 				
-				orderInfo = (List) new OrderInfo(orderNo, orderId, orderDt, orderLine);
-				System.out.println(orderNo);
-				System.out.println(order_id);
-				System.out.println(orderDt);
-				System.out.println(orderProdNo);
-				System.out.println(orderQuantity);
-				System.out.println(prodName);
-				System.out.println(prodPrice);
+				OrderInfo info = new OrderInfo(orderNo, orderId, orderDt, lines);
+				orderInfo.add(info);
 				
+//				(List)new OrderLine(orderNo, orderP, orderQuantity); 
+				
+//				OrderLine l = new OrderLine(orderNo, orderP, orderQuantity);
+				
+//				info =  (List) new OrderInfo(orderNo, orderId, orderDt, orderLine);
+			}
+			if(orderInfo.size() == 0) {
+				throw new FindException("주문 내역이 없습니다");
 			}
 			return orderInfo;
 		} catch (SQLException e) {
