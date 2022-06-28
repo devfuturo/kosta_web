@@ -50,7 +50,7 @@ public class ViewOrderServlet extends HttpServlet {
 			
 			if (id == loginedId) {
 				
-				for(OrderInfo i : info.keySet()) {
+				for(OrderInfo i : .keySet()) {
 					
 					Map<String, Object> map  = new HashMap<>();
 					map.put("status", 1);
