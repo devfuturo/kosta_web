@@ -1,6 +1,5 @@
 package com.my.control;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -33,25 +32,27 @@ public class UploadListServlet extends HttpServlet {
 		String opt = request.getParameter("opt");
 		String []fileNames = null;
 		if(opt == null) {
-			fileNames = new String[]{"x.jpg", "F0001.jpg", "C0001.jpg","C0002.jpg", "R0001파일.txt"};
+			fileNames = new String[]{"x.jpg", "F0001.jpg", "C0001.jpg","C0002.jpg", "R0001.txt"}; 
+			// 여러파일 한꺼번에 다운로드 받고 싶을 때 listServlet사용
+			// 실제 있는 파일만 응답하도록 
 		}
 		ObjectMapper mapper = new ObjectMapper();
-		String saveDirectoryName = "c:\\files";
+		String saveDirectoryName = "d:\\files";
    		List<Map<String,Object>> list = new ArrayList<>();
    		for(String fileName : fileNames) {
-   			Path path = Paths.get(saveDirectoryName, fileName);
-			String contentType = Files.probeContentType(path);
+   			Path path = Paths.get(saveDirectoryName, fileName); // 파일이 있는지 찾아보는 작업
+			String contentType = Files.probeContentType(path); // 파일형식
 
-			if(path.toFile().exists()) {
+			if(path.toFile().exists()) { // 파일 존재할 경우
 				Map<String,Object> map = new HashMap<>();
 				map.put("name", fileName);
 				map.put("contentType", contentType);
-				list.add( map );
+				list.add( map ); // json형태로 클라이언트한테 응답하려는 과정 map을 list형태로 추가
 			}
    		}
    		response.setContentType("application/json;charset=utf-8");
    		PrintWriter out = response.getWriter();
-   		out.print(mapper.writeValueAsString(list));
+   		out.print(mapper.writeValueAsString(list)); // 클라이언트에게 json형태로 응답
 	}
 
 }
