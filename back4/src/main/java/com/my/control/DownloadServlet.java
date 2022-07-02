@@ -35,7 +35,7 @@ public class DownloadServlet extends HttpServlet {
 		File f = path.toFile();
 		if(contentType.contains("image/")) { // 파일 형식에 image/가 들어가면 image형식으로 인지
 			//이미지 파일일 때
-			response.setContentType(contentType);
+			response.setContentType(contentType); // 미리보기 형태 (바로 다운X)
 //			response.setContentType("application/octet-stream;charset=UTF-8"); // 바로 다운로드
 			response.setHeader("Content-Length", String.valueOf(f.length())); 
 			response.setHeader("Content-Disposition", "inline; filename="+URLEncoder.encode(fileName, "UTF-8"));
